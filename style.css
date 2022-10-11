@@ -1,0 +1,234 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* 把google chrome預設的8去掉 */
+.body{
+    margin: 0;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between ; /* 三個段落間的空白(會因設備而改變空白的間距) */
+    align-items: center;    
+    padding:1rem ; /* 讓他不要整個靠邊 */
+}
+
+.header_left{
+    display: flex;
+    align-items: center; /* 一上一下的感覺 */
+    
+}
+
+.header_menu{
+margin: 0 16px ; /* menu設定左右空白(固定 不因設備而改變 */
+
+}
+
+.youtube-logo{
+    margin-left:16px ;
+}
+
+.menu-icon{
+    display: grid;
+    grid-template-columns: repeat(4,auto);
+    align-items: center; 
+    grid-gap: 1.5rem;   /*四個的間隔*/
+}
+
+.menu-channel-icon{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.search-bar{
+    display: flex;
+    flex-grow: 1;
+    margin: 0 15rem; /*與兩邊間隔*/
+}
+.search-intput{
+    width: 100%;                             /*預設塞滿 隨著視窗縮放變小或大*/
+    font-size: 1rem;
+    padding: 0.6em;              /**/
+    border: 1px solid #c6c6c6;            /*框線顏色變淺*/
+    border-top-right-radius: 0;             /*input圓角好像沒啥差*/
+    border-bottom-right-radius: 0;          /*好像沒啥差*/
+}
+.search-btn{
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    border: 1px solid #c6c6c6;
+    background-color: #F8F8F8;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: none;
+    cursor: pointer;                        /*移上去變手指*/
+}
+.search-btn:hover{                          /*移上去變色*/
+    background-color: #f0f0f0f0;
+}
+.search-bar a{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+/*Body*/
+
+.mainbody{
+    display: flex;
+}
+
+.sidebar{
+    background-color: white;
+    width: 230px;
+}
+
+.sidebar_category{
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    padding: 15px 25px;
+}
+
+.sidebar-font{
+    font-size: 0.9rem;
+    margin-left: 24px;
+}
+
+.sidebar_category.active{
+    background-color: #E5E5E5;
+    font-weight: bold; /*首頁字樣*/
+}
+
+/*移上去*/
+.sidebar_category:hover{
+    background-color: #f9f9f9;
+}
+
+.sidebar_category.active:hover{
+    background-color: #ddd;
+}
+
+/*Body-right*/
+
+.video-container{
+    display: flex;
+    /*flex方向*/
+    flex-direction: column;
+}
+
+.thumbnail-image{
+    width: 100%;
+    height: 100%;
+}
+
+.video-description{
+    display: flex;
+    align-items: flex-start;
+    /*影片文字說明離影片縮圖*/
+    margin-top: 1rem;
+}
+
+.channel-icon{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    /*頻道縮圖與影片標題間的距離*/
+    margin-right: 0.75rem;
+}
+.video-details{
+    display: flex;
+    flex-direction: column;
+}
+
+.video-title{
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+.video-channel-name{
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin-bottom: 0.1rem;
+}
+
+/*滑鼠移至頻道名稱上*/
+.video-channel-name:hover{
+    color:#111;
+/*滑鼠移上後才慢慢地改變顏色*/
+    transition: color 3000ms;
+}
+
+.video-channel-name, .video-metadata{
+    color: #A9A9A9;
+}
+
+.thumbnail{
+    position: relative;
+    display: flex; 
+
+}
+
+/*影片長度文字*/
+.thumbnail::before{
+    /*取得data-duration的內容放到thumbnail之前的位子*/
+    /*content只有在before 或 after*/
+    content:attr(data-duration) ;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    background-color: black;
+    color: white;
+    border-radius: 0.3rem;
+    padding:0.1rem 0.3rem;
+    font-size: 0.9rem;
+}
+
+/*每個影片排版*/
+/*外容器100%*/
+.video{
+    width: 100%;
+    height: 100%;
+   
+}
+/*每個影片排版*/
+.video-section{
+    display: grid;
+   
+    /*grid-template-columns: repeat(4, 1fr);  4個一排每個固定為1fr大小 縮放仍4個*/
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /*隨著尺寸寬度而少顯示一些影片*/
+    /*每個縮圖影片的間隔*/
+    gap:3rem 1rem;
+    margin: 0rem 1.5rem;
+
+    padding:3rem 0; /*這裡自己猜測為何不用margin部分用3rem就好?*/
+    border-top: 1px solid #ddd;
+}
+/*把第一個section分線關掉*/
+.video-section:first-child{
+    border: none;
+}
+
+.video-section-title{
+    display: flex;
+
+    /*重要 佔據 從一開始到結束 就是一整行Low*/
+    grid-column: 1 / -1;
+    /*想成有一個邊距在中間*/
+    justify-content: space-between;
+    align-items: center;
+    margin: -1rem 0;
+}
+
+.video-section-title-close{
+    border: none;
+    background:none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #A9A9A9;
+}
